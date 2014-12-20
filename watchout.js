@@ -14,7 +14,8 @@ var width = 960,
     playerCoordinates = {
       x: width / 2,
       y: height / 2
-    };
+    },
+    scores = [0, 0, 0];
 
 var svg = d3.select("body").append("svg")
     .attr("width", width)
@@ -81,9 +82,21 @@ var collision = function(){
       scoreCollision();
     }
   }
+  updateScore();
 };
+
 var scoreCollision = function(){
-  d3.select
+  scores[2]++;
+  scores[1]=0;
+  d3.selectAll("span").data(scores).text(function(d){return d});
+};
+
+var updateScore = function(){
+  scores[1]++;
+  if(scores[1] > scores[0]){
+    scores[0] = scores[1];
+  }
+  d3.selectAll("span").data(scores).text(function(d){return d});
 };
 
 
