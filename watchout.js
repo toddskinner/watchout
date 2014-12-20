@@ -4,12 +4,12 @@
 
 var width = 960,
     height = 500,
-    enemyWidth = 50,
-    enemyHeight = 50,
-    playerRadius = 20,
+    enemyWidth = 30,
+    enemyHeight = 30,
+    playerRadius = 15,
     border = "solid",
     bgcolor = "black",
-    n = 100,
+    n = 15,
     coordinateData = [],
     playerCoordinates = {
       x: width / 2,
@@ -35,7 +35,6 @@ var createEnemy = function(){
 
 var createPlayer = function(){
   var drag = d3.behavior.drag()
-             .on('dragstart', function() { player.style('fill', 'red'); })
              .on('drag', function() {
               playerCoordinates.x = d3.event.x;
               playerCoordinates.y = d3.event.y;
@@ -47,7 +46,7 @@ var createPlayer = function(){
   .attr("cx", width / 2)
   .attr("cy", height / 2)
   .attr("r", playerRadius)
-  .attr("fill", "red")
+  .attr("fill", "yellow")
   .call(drag);
 
 };
@@ -75,14 +74,19 @@ var collision = function(){
   var domElements = d3.selectAll("image");
   for(var i = 0; i < n; i++){
     var radiusSum = enemyWidth/2 + playerRadius;
-    var xDiff = playerCoordinates.x - parseFloat(domElements[0][i].attributes.x.nodeValue);
-    var yDiff = playerCoordinates.y - parseFloat(domElements[0][i].attributes.y.nodeValue);
+    var xDiff = playerCoordinates.x - parseFloat(domElements[0][i].attributes.x.value);
+    var yDiff = playerCoordinates.y - parseFloat(domElements[0][i].attributes.y.value);
     var separation = Math.sqrt(Math.pow(xDiff, 2) + Math.pow(yDiff, 2));
     if(separation < radiusSum){
-      console.log("COLLISION!!");
+      scoreCollision();
     }
   }
 };
+var scoreCollision = function(){
+  d3.select
+};
+
+
 
 createPlayer();
 createEnemy();
