@@ -6,7 +6,7 @@ var width = 960,
     height = 500,
     border = "solid",
     bgcolor = "black",
-    n = 50;
+    n = 20;
 
 var svg = d3.select("body").append("svg")
     .attr("width", width)
@@ -23,6 +23,21 @@ var createEnemy = function(){
     .attr("y", Math.floor(Math.random()*height))
     .attr("xlink:href", "asteroid.png");
   }
+};
+
+var createPlayer = function(){
+  var drag = d3.behavior.drag()
+             .on('dragstart', function() { player.style('fill', 'red'); })
+             .on('drag', function() { player.attr('cx', d3.event.x)
+                                            .attr('cy', d3.event.y); });
+
+  var player = d3.select("svg").append("circle")
+  .attr("cx", width / 2)
+  .attr("cy", height / 2)
+  .attr("r", 20)
+  .attr("fill", "red")
+  .call(drag);
+
 };
 
 var moveEnemy = function() {
@@ -44,5 +59,8 @@ var moveEnemy = function() {
     });
 };
 
+
+
+createPlayer();
 createEnemy();
 setInterval(moveEnemy, 1000);
