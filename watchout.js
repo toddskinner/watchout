@@ -30,7 +30,7 @@ var createEnemy = function(){
     .attr("height", enemyHeight)
     .attr("x", Math.floor(Math.random()*width))
     .attr("y", Math.floor(Math.random()*height))
-    .attr("xlink:href", "asteroid.png");
+    .attr("xlink:href", "shuriken.png");
   }
 };
 
@@ -51,14 +51,19 @@ var createPlayer = function(){
   .call(drag);
 
 };
-
 var moveEnemy = function() {
-  for (var i = 0; i < n; i++) {
-    coordinateData[i] = {
-    x: Math.floor(Math.random()*width),
-    y: Math.floor(Math.random()*height)
-    };
-  }
+    for (var i = 0; i < n; i++) {
+      coordinateData[i] = {
+      x: Math.floor(Math.random()*width),
+      y: Math.floor(Math.random()*height),
+      };
+    }
+    // coordinateData[i]= {
+    //   x:10,
+    //   y:10,
+    //   rotation: 0
+    // };
+
   d3.selectAll("image")
     .data(coordinateData)
     .transition().duration(1000)
@@ -68,8 +73,23 @@ var moveEnemy = function() {
     .attr("y", function(d){
       return d.y;
     });
+    // .attr("transform", function(d,i){
+    //   // console.log(d);
+    //   return "rotate("+(rotation+=15)+"," + d.x + 15 + ", " + d.y + 15 +")";
+    // })
+    // .attrTween("transform", tween)
+    // .attr("transform", function(d,j) {
+    //     var a = 0 + 30 * d.index;
+    //     console.log(d)
+    //     return "translate(" + [d.x ,d.y] + ")rotate(" + [45, 15, 15] + ")"
+    // });
+    // .attr("transform", "rotate(30)");
+    // .attr("transform", function(d, i) {
+    //   d.rotation = d.rotation + 10;
+    //   console.log(coordinateData[i].rotation);
+    //   return "rotate(" + d.rotation + ")";
+    // });
 };
-
 
 var collision = function(){
   var domElements = d3.selectAll("image");
@@ -98,7 +118,6 @@ var updateScore = function(){
   }
   d3.selectAll("span").data(scores).text(function(d){return d});
 };
-
 
 
 createPlayer();
