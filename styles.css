@@ -9,12 +9,12 @@ svg {
     position:relative;
 }
 
-image {
+.shuriken {
   -webkit-transform-origin: 50% 50%;
   transform-origin: 50% 50%;
 }
 
-image {
+.shuriken {
   /* Safari */
    -webkit-animation-name: rotation;
    -webkit-animation-duration: 1s;
