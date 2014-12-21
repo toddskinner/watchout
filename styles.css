@@ -3,3 +3,49 @@
 /* Note: an asteroid image is included in this repo.
 Feel free to use it if you like. */
 
+svg {
+    background: url("space-lols.jpg") no-repeat;
+    background-size: cover;
+    position:relative;
+}
+
+.shuriken {
+  -webkit-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+}
+
+.shuriken {
+  /* Safari */
+   -webkit-animation-name: rotation;
+   -webkit-animation-duration: 1s;
+   -webkit-animation-timing-function: linear;
+   -webkit-animation-delay: 0.s;
+   -webkit-animation-iteration-count: infinite;
+
+   /* Chrome, IE, FireFox */
+   animation-name: rotation;
+   animation-duration: s1;
+   animation-timing-function: linear;
+   animation-delay: 0.5s;
+   animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes rotation {
+    from {-webkit-transform: rotate(0deg);}
+    to {-webkit-transform: rotate(360deg);}
+}
+
+@keyframes rotation {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
+
+/*image {
+  -webkit-animation: spin 2.5s;
+}
+
+@-webkit-keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}*/
+
